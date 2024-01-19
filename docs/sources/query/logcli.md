@@ -364,7 +364,7 @@ Flags:
       --auth-header="Authorization"
                                 The authorization header used. Can also be set using LOKI_AUTH_HEADER env var.
       --proxy-url=""            The http or https proxy to use when making requests. Can also be set using LOKI_HTTP_PROXY_URL env var.
-      --custom-headers=""       Custom headers to add to each request. Can also be set using LOKI_CUSTOM_HEADERS env var. Example: --custom-headers="X-Token: 1, X-TraceID: 2"
+      --custom-headers=""       Custom headers to add to each request. Can also be set using LOKI_CUSTOM_HEADERS env var. Format: 'key1:val1,key2:val2'""
       --limit=30                Limit on number of entries to print. Setting it to 0 will fetch all entries.
       --since=1h                Lookback window.
       --from=FROM               Start looking for logs at this absolute time (inclusive)
