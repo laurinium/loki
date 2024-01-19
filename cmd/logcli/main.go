@@ -446,7 +446,7 @@ func newQueryClient(app *kingpin.Application) client.Client {
 	app.Flag("max-backoff", "Maximum backoff time between retries. Can also be set using LOKI_CLIENT_MAX_BACKOFF env var.").Default("0").Envar("LOKI_CLIENT_MAX_BACKOFF").IntVar(&client.BackoffConfig.MaxBackoff)
 	app.Flag("auth-header", "The authorization header used. Can also be set using LOKI_AUTH_HEADER env var.").Default("Authorization").Envar("LOKI_AUTH_HEADER").StringVar(&client.AuthHeader)
 	app.Flag("proxy-url", "The http or https proxy to use when making requests. Can also be set using LOKI_HTTP_PROXY_URL env var.").Default("").Envar("LOKI_HTTP_PROXY_URL").StringVar(&client.ProxyURL)
-
+	app.Flag("custom-headers", "Custom headers to add to all requests. Can also be set using LOKI_HTTP_CUSTOM_HEADERS env var. Format: 'key1:val1,key2:val2'").Default("").Envar("LOKI_HTTP_CUSTOM_HEADERS").StringVar(&client.CustomHeaders)
 	return client
 }
 

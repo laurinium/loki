@@ -59,6 +59,12 @@ func Test_getHTTPRequestHeader(t *testing.T) {
 		}, http.Header{
 			"Authorization": []string{"Bearer " + "secureToken"},
 		}, false},
+		{"custom-headers", DefaultClient{
+			CustomHeaders: "X-Header-1: value1,X-Header-2: value2",
+		}, http.Header{
+			"X-Header-1": []string{"value1"},
+			"X-Header-2": []string{"value2"},
+		}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

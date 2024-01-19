@@ -78,6 +78,7 @@ type DefaultClient struct {
 	AuthHeader      string
 	ProxyURL        string
 	BackoffConfig   BackoffConfig
+	CustomHeaders   string
 }
 
 // Query uses the /api/v1/query endpoint to execute an instant query
@@ -375,6 +376,17 @@ func (c *DefaultClient) getHTTPRequestHeader() (http.Header, error) {
 		}
 		h.Set(c.AuthHeader, "Bearer "+bearerToken)
 	}
+
+	if c.CustomHeaders != "" {
+		for _, header := range strings.Split(c.CustomHeaders, ",") {
+			parts := strings.SplitN(header, ":", 2)
+			if len(parts) != 2 {
+				return nil, fmt.Errorf("invalid custom header: %s", header)
+			}
+			h.Set(parts[0], strings.TrimSpace(parts[1]))
+		}
+	}
+
 	return h, nil
 }
 
